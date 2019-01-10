@@ -35,7 +35,7 @@ class DataMananger():
                                 ext VARCHAR(100),
                                 lastStamp DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)""" % self.keyWord
 
-        cursor.execute(sqlDel)
+        # cursor.execute(sqlDel)
         cursor.execute(sqlGoogle)
         return
 

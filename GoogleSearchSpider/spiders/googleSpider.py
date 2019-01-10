@@ -32,11 +32,6 @@ class searchSpider(scrapy.Spider):
         mails = re.findall(regex, response.text)
         matchMails = []
         for mail in mails:
-            pattern = re.compile(r"/\.[jpg|gif|png]/i");
-            match = pattern.findall(mail)
-            if match:
-                print('是张图片')
-            else:
                 matchMails.append(mail)
 
         mails_str = ','.join(matchMails)
