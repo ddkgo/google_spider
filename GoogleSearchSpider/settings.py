@@ -138,13 +138,13 @@ MYSQL_DBNAME = 'google_search'
 MYSQL_USER = 'root'
 MYSQL_PASSWD = 'ou1314520'
 
-DOWNLOADER_MIDDLEWARES = {
-    'GoogleSearchSpider.middlewares.RandomUserAgent': 1,
-    'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware': 2,
-    # 'GoogleSearchSpider.middlewares.GooglesearchspiderSpiderMiddleware': 543,
-    'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware': 110,
-    'GoogleSearchSpider.middlewares.ProxyMiddleware': 111
-}
+# DOWNLOADER_MIDDLEWARES = {
+#     # 'GoogleSearchSpider.middlewares.RandomUserAgent': 1,
+#     # 'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware': 2,
+#     # 'GoogleSearchSpider.middlewares.GooglesearchspiderSpiderMiddleware': 543,
+#     # 'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware': 110,
+#     # 'GoogleSearchSpider.middlewares.ProxyMiddleware': 111
+# }
 USER_AGENTS = [
     "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; AcooBrowser; .NET CLR 1.1.4322; .NET CLR 2.0.50727)",
     "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0; Acoo Browser; SLCC1; .NET CLR 2.0.50727; Media Center PC 5.0; .NET CLR 3.0.04506)",

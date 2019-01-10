@@ -20,12 +20,12 @@ class DataMananger():
         return
 
     def create_table(self,key):
-        self.keyWord = key
+        self.keyWord = key.replace(' ', '')
         # 使用 execute() 方法执行 SQL，如果表不存在就创建
         cursor = self.dbpool.cursor()
 
         # 使用预处理语句创建表
-        sqlDel = "DROP TABLE IF EXISTS GOOGLE_RESULT_%s;" % key
+        sqlDel = "DROP TABLE IF EXISTS GOOGLE_RESULT_%s;" % self.keyWord
         # 使用预处理语句创建表
         sqlGoogle = """CREATE TABLE IF NOT EXISTS GOOGLE_RESULT_%s(
                                 Id INT PRIMARY KEY AUTO_INCREMENT,
@@ -33,7 +33,7 @@ class DataMananger():
                                 mail VARCHAR(1000),
                                 destext VARCHAR(1000),
                                 ext VARCHAR(100),
-                                lastStamp DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)""" % key
+                                lastStamp DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)""" % self.keyWord
 
         cursor.execute(sqlDel)
         cursor.execute(sqlGoogle)
@@ -42,7 +42,8 @@ class DataMananger():
     def insert_item(self,item):
         dbObject = self.dbpool
         cursor = dbObject.cursor()
-        sql = "INSERT INTO GOOGLE_RESULT_%(url,mail,destext,ext) VALUES(%s,%s,%s,%s)" % self.keyWord
+        dataname = "INSERT INTO GOOGLE_RESULT_%s" % self.keyWord
+        sql = dataname+"(url,mail,destext,ext) VALUES(%s,%s,%s,%s)"
         try:
             cursor.execute(sql, (
                 item['url'], item['mail'], item['destext'], item['ext']))

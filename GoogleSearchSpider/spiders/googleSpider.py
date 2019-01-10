@@ -14,16 +14,13 @@ class searchSpider(scrapy.Spider):
     start_urls = []
 
     def __init__(self):
-        self.keyword = input('请输入搜索关键词...')
-        print(self.keyword)
-        word = self.keyword.strip()
-        url = 'https://www.google.com/search?q=%s' % parse.quote(word)
-        self.start_urls.append(url)
-
-
-    def open_spider(self):
+        word = input('请输入搜索关键词...')
+        print(word)
+        self.keyword = word.strip()
         DataMananger().connect()
         DataMananger().create_table(self.keyword)
+        url = 'https://www.google.com/search?q=%s' % parse.quote(self.keyword )
+        self.start_urls.append(url)
 
     def parse(self,response):
         print('解析谷歌搜索返回')
@@ -69,7 +66,7 @@ class searchSpider(scrapy.Spider):
 
         next_pages_urls = response.css("#foot table a::attr(href)").extract()
         for page_num, url in enumerate(next_pages_urls):
-            if (page_num < 11):
+            if (page_num < 100):
                 next_page_url = response.urljoin(url)
                 yield scrapy.Request(
                     url=next_page_url, callback=self.parse, dont_filter=True)
