@@ -66,9 +66,12 @@ class ProxiesAbroad(object):
             protocol = 'https' if 'https' in proxy else 'http'
             proxies = {protocol: proxy}
             try:
-                if requests.get('http://www.google.com/search?q=cycling%20shorts', proxies=proxies, timeout=2).status_code == 200:
+                request = requests.get('http://www.google.com/search?q=cycling%20shorts', proxies=proxies, timeout=2)
+                if request.status_code == 200:
                     print('success %s' % proxy)
                     new_queue.put(proxy)
+                else:
+                    print(request.status_code)
             except:
                 print('fail %s' % proxy)
 
