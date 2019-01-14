@@ -14,12 +14,13 @@ class searchSpider(scrapy.Spider):
     start_urls = []
 
     def __init__(self):
-        word = input('请输入搜索关键词...')
+        # word = input('请输入搜索关键词...')
+        word = 'cycling shorts'
         print(word)
         self.keyword = word.strip()
         DataMananger().connect()
         DataMananger().create_table(self.keyword)
-        url = 'https://www.google.com/search?q=%s' % parse.quote(self.keyword )
+        url = 'http://www.google.com/search?q=%s' % parse.quote(self.keyword )
         self.start_urls.append(url)
 
     def parse(self,response):
@@ -49,15 +50,16 @@ class searchSpider(scrapy.Spider):
         url_to_follow = response.css(".r>a::attr(href)").extract()
         url_to_follow = [url.replace('/url?q=', '') for url in url_to_follow]
         for url in url_to_follow:
-            print('解析页面')
-            print(url)
-            item = GooglesearchspiderItem()
-            item['url'] = url
-            item['destext'] = ''
-            item['ext'] = ''
-            request = Request(url, callback=self.parseMail, dont_filter=True)
-            request.meta['item'] = item
-            yield request
+            if url.find('search?q') == -1:
+                print('解析页面')
+                print(url)
+                item = GooglesearchspiderItem()
+                item['url'] = url
+                item['destext'] = ''
+                item['ext'] = ''
+                request = Request(url, callback=self.parseMail, dont_filter=True)
+                request.meta['item'] = item
+                yield request
 
         next_pages_urls = response.css("#foot table a::attr(href)").extract()
         for page_num, url in enumerate(next_pages_urls):
