@@ -33,7 +33,7 @@ class combMailDataManager(object):
         cursor = dbObject.cursor()
         totoalMails = []
         # SQL 查询语句
-        sql = "SELECT mail FROM GOOGLE_RESULT_%s where mail <> ''"% key
+        sql = "SELECT mail FROM GOOGLE_REQMAILRESULT_%s where mail <> ''"% key
 
         maildataname = "INSERT INTO GOOGLE_MAILRESULT_%s" % key
         insertsql = maildataname + "(mail) VALUES(%s)"
@@ -92,8 +92,7 @@ class combMailDataManager(object):
         return False
 
 if __name__ == '__main__':
-    word = input('请输入要合并的表...')
-    print(word)
+    word = get_project_settings()["SEARCH_WORDKEY"]
     keyword = word.replace(' ', '')
     a = combMailDataManager()
     a.connect()

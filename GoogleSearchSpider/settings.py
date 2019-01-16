@@ -138,14 +138,15 @@ MYSQL_DBNAME = 'google_search'
 MYSQL_USER = 'root'
 MYSQL_PASSWD = 'ou1314520'
 
+SEARCH_WORDKEY = 'cycling shorts'
+
 DOWNLOADER_MIDDLEWARES = {
-    'GoogleSearchSpider.middlewares.RandomUserAgent': 1,
-    'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware': 2,
-    'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
-    'GoogleSearchSpider.middlewares.ProxyMiddleware': 111
+    # 'GoogleSearchSpider.middlewares.RandomUserAgent': 1,
+    # 'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware': 2,
+    # 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
+    # 'GoogleSearchSpider.middlewares.ProxyMiddleware': 111
+    # 'GoogleSearchSpider.middlewares.V2rayMiddleware': 112
 }
 USER_AGENTS = [
-    "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64)  AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36",
-	"Mozilla/5.0 (Windows NT 10.0; Win64; x64)  AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.79 Safari/537.36 Edge/14.14393"
+    "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36",
 ]

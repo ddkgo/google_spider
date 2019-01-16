@@ -101,6 +101,11 @@ class ProxyMiddleware(object):
         proxy = random.choice(proxies).strip()
         return proxy
 
+class V2rayMiddleware(object):
+    def process_request(self, request, spider):
+        proxy = 'socks5://127.0.0.1:1080'
+        request.meta['proxy'] = proxy
+
 class GooglesearchspiderDownloaderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the downloader middleware does not modify the

@@ -39,6 +39,8 @@ class GooglesearchspiderPipeline(object):
         print(item)
         if spider.name == 'googlesearch':
             DataMananger().insert_item(item)
+        elif spider.name == 'googlesearch_simple':
+            DataMananger().insert_item(item)
 
         return item
 
